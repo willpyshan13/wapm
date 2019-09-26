@@ -16,7 +16,11 @@ import org.gradle.api.Project
  */
 class TracePlugin : Plugin<Project> {
     override fun apply(p0: Project) {
+        when{
+            p0.project.hasProperty("com.android.application")->{
 
+            }
+        }
     }
 
 }

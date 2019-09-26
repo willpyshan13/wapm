@@ -1,2 +1,1 @@
-include ':app', ':apm-plugin-trace',
-rootProject.name='wapm'
+include ':app', ':apm-plugin-trace'
