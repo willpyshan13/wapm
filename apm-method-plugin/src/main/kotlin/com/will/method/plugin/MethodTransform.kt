@@ -31,11 +31,11 @@ class MethodTransform(private val project: Project) : ApmTransform(project) {
         outputProvider: TransformOutputProvider?,
         isIncremental: Boolean
     ) {
-//        debugHunterExtension = project.extensions.getByName("methodExt")
+//        debugHunterExtension = project.extensions.getByName("methodExt") as MethodExtension?
         super.transform(context, inputs, referencedInputs, outputProvider, isIncremental)
     }
 
-//    override fun inDuplcatedClassSafeMode(): Boolean {
-//        return debugHunterExtension!!.duplcatedClassSafeMode
-//    }
+    override fun inDuplcatedClassSafeMode(): Boolean {
+        return false
+    }
 }

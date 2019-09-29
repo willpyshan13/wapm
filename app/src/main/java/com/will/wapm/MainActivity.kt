@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     @MethodDebug
     fun add(a:Int,b:Int):Int{
+        for (index in 1..100000 step 2){
+            Log.d("add", "i=$index")
+        }
         return a+b
     }
 }

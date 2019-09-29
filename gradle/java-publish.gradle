@@ -1,5 +1,5 @@
 apply plugin: 'maven-publish'
-
+apply plugin: 'maven'
 def javadocJar = task("javadocJar", type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
@@ -8,6 +8,20 @@ def sourcesJar = task("sourcesJar", type: Jar) {
     classifier = 'sources'
     from sourceSets.main.java.srcDirs
 }
+
+uploadArchives {
+    group = 'apm'
+    repositories {
+        mavenDeployer {
+            //设置插件的GAV参数
+            pom.groupId = group
+            pom.version = '1.0.0'
+            //文件发布到下面目录
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
 
 publishing {
     publications {

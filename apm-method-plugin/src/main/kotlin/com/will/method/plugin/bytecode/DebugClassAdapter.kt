@@ -14,18 +14,18 @@ class DebugClassAdapter internal constructor(
     override fun visit(
         version: Int,
         access: Int,
-        name: String,
-        signature: String,
-        superName: String,
-        interfaces: Array<String>
+        name: String?,
+        signature: String?,
+        superName: String?,
+        interfaces: Array<out String>?
     ) {
         super.visit(version, access, name, signature, superName, interfaces)
         this.className = name
     }
 
     override fun visitMethod(
-        access: Int, name: String,
-        desc: String, signature: String, exceptions: Array<String>
+        access: Int, name: String?,
+        desc: String?, signature: String?, exceptions: Array<out String>?
     ): MethodVisitor? {
         val mv = cv.visitMethod(access, name, desc, signature, exceptions)
         val methodUniqueKey = name + desc
@@ -33,9 +33,9 @@ class DebugClassAdapter internal constructor(
             DebugMethodAdapter(
                 className!!,
                 it,
-                name,
+                name!!,
                 access,
-                desc,
+                desc!!,
                 mv
             )
         }

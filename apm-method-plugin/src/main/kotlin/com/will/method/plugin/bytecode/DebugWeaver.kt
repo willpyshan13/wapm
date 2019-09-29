@@ -41,7 +41,6 @@ class DebugWeaver : BaseWeaver() {
     }
 
     companion object {
-
         private val PLUGIN_LIBRARY = "com.will.library"
     }
 

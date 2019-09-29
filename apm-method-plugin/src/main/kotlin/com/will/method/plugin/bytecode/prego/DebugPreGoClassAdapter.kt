@@ -8,16 +8,18 @@ import org.objectweb.asm.Opcodes
 
 import java.util.HashMap
 
-class DebugPreGoClassAdapter(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM5, cv) {
+class DebugPreGoClassAdapter(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM7, cv) {
 
     private val methodParametersMap = HashMap<String, List<Parameter>>()
     private var debugPreGoMethodAdapter: DebugPreGoMethodAdapter? = null
     var isNeedParameter = false
         private set
 
+
+
     override fun visitMethod(
-        access: Int, name: String,
-        desc: String, signature: String, exceptions: Array<String>
+        access: Int, name: String?,
+        desc: String?, signature: String?, exceptions: Array<out String>?
     ): MethodVisitor? {
         val mv = cv.visitMethod(access, name, desc, signature, exceptions)
         if (debugPreGoMethodAdapter != null && debugPreGoMethodAdapter!!.needParameter) {

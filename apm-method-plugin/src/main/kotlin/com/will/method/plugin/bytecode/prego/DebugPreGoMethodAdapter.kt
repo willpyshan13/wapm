@@ -21,7 +21,7 @@ class DebugPreGoMethodAdapter(
         private set
     private val labelList = ArrayList<Label>()
 
-    override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
+    override fun visitAnnotation(desc: String?, visible: Boolean): AnnotationVisitor {
         val defaultAv = super.visitAnnotation(desc, visible)
         if (DEFAULT_ANNOTATION == desc || "Lcom/hunter/library/debug/HunterDebugImpl;" == desc) {
             needParameter = true
@@ -30,15 +30,15 @@ class DebugPreGoMethodAdapter(
     }
 
     override fun visitLocalVariable(
-        name: String,
-        desc: String,
-        signature: String,
-        start: Label,
-        end: Label,
+        name: String?,
+        descriptor: String?,
+        signature: String?,
+        start: Label?,
+        end: Label?,
         index: Int
     ) {
         if ("this" != name && start === labelList[0] && needParameter) {
-            val type = Type.getType(desc)
+            val type = Type.getType(descriptor)
             if (type.sort == Type.OBJECT || type.sort == Type.ARRAY) {
                 parameters.add(
                     Parameter(
@@ -48,10 +48,10 @@ class DebugPreGoMethodAdapter(
                     )
                 )
             } else {
-                parameters.add(Parameter(name, desc, index))
+                parameters.add(Parameter(name, descriptor, index))
             }
         }
-        super.visitLocalVariable(name, desc, signature, start, end, index)
+        super.visitLocalVariable(name, descriptor, signature, start, end, index)
     }
 
     override fun visitEnd() {

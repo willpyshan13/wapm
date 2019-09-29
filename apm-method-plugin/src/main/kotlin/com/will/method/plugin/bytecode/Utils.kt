@@ -7,7 +7,7 @@ class Utils : Opcodes {
     companion object {
 
 
-        fun getLoadOpcodeFromDesc(desc: String): Int {
+        fun getLoadOpcodeFromDesc(desc: String?): Int {
             var opcode = Opcodes.ILOAD
             if ("F" == desc) {
                 opcode = Opcodes.FLOAD
@@ -15,9 +15,9 @@ class Utils : Opcodes {
                 opcode = Opcodes.LLOAD
             } else if ("D" == desc) {
                 opcode = Opcodes.DLOAD
-            } else if (desc.startsWith("L")) {  //object
+            } else if (desc!!.startsWith("L")) {  //object
                 opcode = Opcodes.ALOAD
-            } else if (desc.startsWith("[")) {  //array
+            } else if (desc!!.startsWith("[")) {  //array
                 opcode = Opcodes.ALOAD
             }
             return opcode

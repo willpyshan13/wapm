@@ -102,7 +102,7 @@ class DebugMethodAdapter(
         varIndex: Int,
         localIndex: Int,
         opcode: Int,
-        name: String,
+        name: String?,
         desc: String
     ) {
         Log.d("debug visitPrint", "visitPrint")
