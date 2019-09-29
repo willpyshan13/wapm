@@ -1,23 +1,34 @@
-apply plugin: 'kotlin'
+apply plugin: 'groovy'
 
-repositories {
-    jcenter()
-    mavenCentral()
+
+sourceSets {
+    main {
+        groovy {
+            srcDir '../apm-method-plugin/src/main/groovy'
+        }
+
+        java {
+            srcDir "../apm-method-plugin/src/main/java"
+        }
+
+        resources {
+            srcDir '../apm-method-plugin/src/main/resources'
+        }
+    }
 }
 
-targetCompatibility = JavaVersion.VERSION_1_8
-sourceCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     implementation gradleApi()
+    implementation localGroovy()
     implementation 'commons-io:commons-io:2.6'
     implementation 'commons-codec:commons-codec:1.10'
     implementation 'org.ow2.asm:asm:7.1'
     implementation 'org.ow2.asm:asm-commons:7.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compileOnly 'com.android.tools.build:gradle:3.5.0'
 }
+
 version 1.0
-group "com.will.apm"
+group "com.will.asm"
 
 apply from: rootProject.file('gradle/java-publish.gradle')

@@ -14,3 +14,8 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 dependencies {
     implementation project(':apm-plugin-base')
 }
+
+version 1.0
+group "com.will.asm"
+
+apply from: rootProject.file('gradle/java-publish.gradle')

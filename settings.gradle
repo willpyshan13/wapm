@@ -1,1 +1,1 @@
-include ':app', ':apm-plugin-trace', ':apm-plugin-base'
+include ':app', ':apm-plugin-trace', ':apm-plugin-base', ':apm-method-library', ':apm-method-plugin'
