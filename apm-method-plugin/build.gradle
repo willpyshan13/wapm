@@ -1,21 +1,5 @@
+apply from:'../gradle/kotlin.gradle'
 apply plugin: 'groovy'
-
-
-sourceSets {
-    main {
-        groovy {
-            srcDir '../apm-method-plugin/src/main/groovy'
-        }
-
-        java {
-            srcDir "../apm-method-plugin/src/main/java"
-        }
-
-        resources {
-            srcDir '../apm-method-plugin/src/main/resources'
-        }
-    }
-}
 
 
 dependencies {
