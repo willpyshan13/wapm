@@ -16,6 +16,7 @@ class DebugPreGoMethodAdapter(
     mv: MethodVisitor
 ) : MethodVisitor(Opcodes.ASM7, mv), Opcodes {
     private val DEFAULT_ANNOTATION = "Lcom/will/library/MethodDebug;"
+    private val DEFAULT_ANNOTATION_DEBUG = "Lcom/will/library/MethodDebugImpl;"
     private val parameters = ArrayList<Parameter>()
     var needParameter = false
         private set
@@ -23,7 +24,7 @@ class DebugPreGoMethodAdapter(
 
     override fun visitAnnotation(desc: String?, visible: Boolean): AnnotationVisitor {
         val defaultAv = super.visitAnnotation(desc, visible)
-        if (DEFAULT_ANNOTATION == desc || "Lcom/hunter/library/debug/HunterDebugImpl;" == desc) {
+        if (DEFAULT_ANNOTATION == desc || DEFAULT_ANNOTATION_DEBUG == desc) {
             needParameter = true
         }
         return defaultAv

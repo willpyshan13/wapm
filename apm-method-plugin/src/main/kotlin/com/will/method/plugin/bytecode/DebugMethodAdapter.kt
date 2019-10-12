@@ -17,6 +17,7 @@ class DebugMethodAdapter(
     mv: MethodVisitor
 ) : LocalVariablesSorter(Opcodes.ASM7, access, methodDesc, mv), Opcodes {
     private val DEFAULT_ANNOTATION = "Lcom/will/library/MethodDebug;"
+    private val DEFAULT_ANNOTATION_DEBUG = "Lcom/will/library/MethodDebugImpl;"
     private val DEFAULT_PARAMETER = "com/will/library/ParameterPrinter"
     private val DEFAULT_PARAMETER_DESC = "(Ljava/lang/String;%s)Lcom/will/library/ParameterPrinter;"
     private val DEFAULT_RESULT = "com/will/library/ResultPrinter"
@@ -42,7 +43,7 @@ class DebugMethodAdapter(
         Log.d("debug visitAnnotation", desc)
         if (DEFAULT_ANNOTATION == desc) {
             debugMethod = true
-        } else if ("Lcom/hunter/library/debug/HunterDebugImpl;" == desc) {
+        } else if (DEFAULT_ANNOTATION_DEBUG == desc) {
             debugMethodWithCustomLogger = true
         }
         return defaultAv
